@@ -8,7 +8,11 @@ let g (l,m,r,s) = let (mn,ln) = p l in (ln,mn,m::r,s);;
 
 let d (l,m,r,s) = let (mn,rn) = p r in (m::l,mn,rn,s);;
 
-let rec f (l,m,r,s) = match (m,s) with
+let rec f (l,m,r,s) = 
+  Printf.printf "%d:%d(l=%s,r=%s): \n" m s 
+    (String.concat "," (List.map string_of_int l))
+    (String.concat "," (List.map string_of_int r)) ; 
+  match (m,s) with
 	(0,0) -> f (d (l,1,r,1)) |
 	(0,1) -> f (d (l,1,r,2)) |
 	(0,2) -> f (g (l,1,r,3)) |
